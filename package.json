@@ -1,0 +1,41 @@
+{
+    "name": "@lesnoypudge/eslint-config",
+    "version": "1.0.0",
+    "main": "build/index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "builder"
+    },
+    "author": "LesnoyPudge",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@eslint/compat": "^1.1.1",
+        "@eslint/js": "^9.11.1",
+        "@lesnoypudge/formatter-config": "^3.2.0",
+        "@stylistic/eslint-plugin": "^2.8.0",
+        "confusing-browser-globals": "^1.0.11",
+        "eslint": "^9.11.1",
+        "eslint-plugin-ava": "^15.0.1",
+        "eslint-plugin-import-x": "^4.3.0",
+        "eslint-plugin-jsx-a11y": "^6.10.0",
+        "eslint-plugin-jsx-control-statements": "^3.0.0",
+        "eslint-plugin-n": "^17.10.3",
+        "eslint-plugin-no-use-extend-native": "^0.7.2",
+        "eslint-plugin-only-warn": "^1.1.0",
+        "eslint-plugin-prefer-arrow": "^1.2.3",
+        "eslint-plugin-promise": "^7.1.0",
+        "eslint-plugin-react": "^7.36.1",
+        "eslint-plugin-react-hooks": "^5.1.0-rc-04bd67a4-20240924",
+        "eslint-plugin-react-refresh": "^0.4.12",
+        "eslint-plugin-unicorn": "^55.0.0",
+        "globals": "^15.9.0",
+        "typescript-eslint": "^8.7.0"
+    },
+    "devDependencies": {
+        "@lesnoypudge/builder": "^1.0.4",
+        "@types/confusing-browser-globals": "^1.0.3",
+        "@types/eslint__js": "^8.42.3",
+        "@types/eslint-plugin-jsx-a11y": "^6.9.0"
+    }
+}
