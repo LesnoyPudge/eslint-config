@@ -76,6 +76,9 @@ const unfilteredConfig = mergeConfigs(
                 'beforeClosing': 'never',
             }],
             '@typescript-eslint/no-namespace': 'off',
+            'import-x/no-unresolved': 'off',
+            'n/no-missing-import': 'off',
+            '@typescript-eslint/ban-ts-comment': 'off',
         },
     },
 );
