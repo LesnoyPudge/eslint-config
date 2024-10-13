@@ -1,63 +1,104 @@
+import type { TSESLint } from '@typescript-eslint/utils';
 
 
 
 const isObject = (o: unknown): o is Record<any, any> => {
     return Object.prototype.toString.call(o) === '[object Object]';
-}
+};
 
-export const merge = <
-    _Obj extends Record<string, unknown>
->(...objects: [_Obj, ..._Obj[]]): _Obj => {
-    if (objects.length === 0) return {} as _Obj;
-    if (objects.length < 2) return objects[0]!;
+const mergeTwo = <
+    _Object extends Record<any, any>,
+>(
+    _target: _Object,
+    _source: _Object,
+) => {
+    const result = {} as _Object;
 
-    if (objects.length > 2) {
-        const last = objects.pop()!;
-        const merged = merge(...objects)!;
-        
-        return merge(last, merged);
-    }
-    
-    const result = structuredClone(objects[0]!);
-    const source = objects[1]!;
-    
     const loop = (
-        target: Record<any, any>, 
+        result: Record<any, any>,
+        target: Record<any, any>,
         source: Record<any, any>,
     ) => {
-        Object.getOwnPropertyNames(source).forEach((key) => {
+        for (const key of new Set([
+            ...Object.keys(target),
+            ...Object.keys(source),
+        ])) {
+            if (Object.hasOwn(source, key)) {
+                result[key] = (
+                    isObject(source[key])
+                        ? { ...source[key] }
+                        : source[key]
+                );
+            }
+
+            if (Object.hasOwn(target, key)) {
+                result[key] = (
+                    isObject(target[key])
+                        ? { ...target[key] }
+                        : target[key]
+                );
+            }
+        }
+
+        for (const key of Object.keys(source)) {
             const targetValue = target[key];
             const sourceValue = source[key];
 
             if (isObject(targetValue) && isObject(sourceValue)) {
-                return loop(targetValue, sourceValue);
+                // rules should be sallowly merged
+                if (key === 'rules') {
+                    result[key] = Object.assign({}, targetValue, sourceValue);
+                    continue;
+                }
+
+                loop(result[key], targetValue, sourceValue);
+                continue;
             }
 
             if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
-                target[key] = Array.from(new Set([
-                    ...targetValue, 
-                    ...sourceValue
-                ]))
+                result[key] = [...new Set([
+                    ...targetValue,
+                    ...sourceValue,
+                ])];
 
-                return;
+                continue;
             }
 
-            target[key] = sourceValue;
-        })
-    }
+            result[key] = sourceValue;
+        }
+    };
 
-    loop(result, source);
+    loop(result, _target, _source);
 
     return result;
-}
+};
 
-// export const extractRules = (
-//     configs: TSESLint.FlatConfig.ConfigArray
-// ): TSESLint.SharedConfig.RulesRecord => {
-//     return configs.map((config) => {
-//         return config.rules ?? {};
-//     }).reduce((acc, cur) => {
-//         acc = {...acc, ...cur}
-//         return acc;
-//     }, {})
-// }
+export const merge = <
+    _Object extends Record<any, any>,
+>(...objects: _Object[]): _Object => {
+    if (objects.length === 0) return {} as _Object;
+    if (objects.length === 1) return objects[0]!;
+    if (objects.length > 2) {
+        const last = objects.at(-1)!;
+        const merged = merge(...objects.slice(0, -1));
+
+        return mergeTwo(merged, last);
+    }
+    // console.log(...objects);
+    return mergeTwo(objects[0]!, objects[1]!);
+};
+
+export const mergeConfigs = (
+    ...configs: TSESLint.FlatConfig.ConfigArray
+) => merge(...configs);
+
+export const extractRules = (
+    configs: TSESLint.FlatConfig.ConfigArray,
+): TSESLint.SharedConfig.RulesRecord => {
+    return configs.map((config) => {
+        return config.rules ?? {};
+    }).reduce((accumulator, current) => {
+        accumulator = { ...accumulator, ...current };
+        return accumulator;
+    }, {});
+};

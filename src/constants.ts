@@ -23,10 +23,11 @@ export namespace CONST {
         'vendor/**',
         'build/**',
         '**/*.generated.*',
-    ]
+        '**/eslint.config.*',
+    ];
 
     export const STYLE = {
         SPACE: 4,
-        QUOTES: 'single'
+        QUOTES: 'single',
     } as const;
 }
