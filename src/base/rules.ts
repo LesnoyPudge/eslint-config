@@ -114,6 +114,7 @@ const unfilteredConfig = mergeConfigs(
             '@typescript-eslint/no-unused-vars': ['warn', {
                 argsIgnorePattern: '^_',
             }],
+            'unicorn/no-null': 'off',
         },
     },
 );
