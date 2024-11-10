@@ -12,10 +12,14 @@ import { mergeConfigs } from '../utils';
 export const reactRulesConfig = mergeConfigs(
     jsxAllyPlugin.flatConfigs.recommended,
     jsxAllyPlugin.flatConfigs.strict,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     reactPlugin.configs.flat.recommended,
     {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         rules: {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             ...reactHooksPlugin.configs.recommended.rules,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             ...controlStatementsPlugin.configs.recommended.rules,
             'react-refresh/only-export-components': 'warn',
             'jsx-control-statements/jsx-jcs-no-undef': 'off',

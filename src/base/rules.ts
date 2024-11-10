@@ -25,9 +25,12 @@ const unfilteredConfig = mergeConfigs(
     importPlugin.flatConfigs.typescript,
     ...tslint.configs.strictTypeChecked,
     ...tslint.configs.stylisticTypeChecked,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     eslintPluginNoUseExtendNative.configs.recommended,
     eslintPluginUnicorn.configs['flat/recommended'],
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     avaPlugin.configs['flat/recommended'],
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     pluginPromise.configs['flat/recommended'],
     nodePlugin.configs['flat/recommended-module'],
     stylisticPlugin.configs['disable-legacy'],
@@ -45,6 +48,7 @@ const unfilteredConfig = mergeConfigs(
     }),
     {
         plugins: {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             'prefer-arrow': preferArrowPlugin,
         },
         rules: {
@@ -57,7 +61,10 @@ const unfilteredConfig = mergeConfigs(
                     classPropertiesAllowed: false,
                 },
             ],
-            '@stylistic/max-len': ['warn', { 'code': 80 }],
+            '@stylistic/max-len': ['warn', {
+                'code': 80,
+                'ignoreComments': true,
+            }],
             '@stylistic/eol-last': ['warn', 'never'],
             '@stylistic/no-multiple-empty-lines': [
                 'warn',
@@ -79,6 +86,34 @@ const unfilteredConfig = mergeConfigs(
             'import-x/no-unresolved': 'off',
             'n/no-missing-import': 'off',
             '@typescript-eslint/ban-ts-comment': 'off',
+            'unicorn/prevent-abbreviations': 'off',
+            'unicorn/catch-error-name': 'off',
+            'unicorn/no-array-for-each': 'off',
+            'unicorn/no-array-reduce': 'off',
+            'unicorn/filename-case': 'off',
+            '@typescript-eslint/prefer-promise-reject-errors': 'off',
+            'unicorn/error-message': 'off',
+            '@typescript-eslint/no-confusing-void-expression': 'off',
+            'promise/always-return': ['warn', {
+                ignoreLastCallback: true,
+            }],
+            '@typescript-eslint/restrict-template-expressions': [
+                'warn',
+                {
+                    allowNumber: true,
+                },
+            ],
+            'unicorn/no-useless-undefined': ['warn', {
+                checkArguments: false,
+                checkArrowFunctionBody: false,
+            }],
+            'promise/param-names': 'off',
+            '@typescript-eslint/no-unnecessary-type-parameters': 'off',
+            '@typescript-eslint/unbound-method': 'off',
+            'unicorn/no-array-callback-reference': 'off',
+            '@typescript-eslint/no-unused-vars': ['warn', {
+                argsIgnorePattern: '^_',
+            }],
         },
     },
 );
