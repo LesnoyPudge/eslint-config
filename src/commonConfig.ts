@@ -1,26 +1,20 @@
-import 'eslint-plugin-only-warn';
 import tslint from 'typescript-eslint';
-import { CONST } from '../constants';
+import { CONST } from './constants';
 import path from 'node:path';
 import globals from 'globals';
-import { baseRulesConfig } from './rules';
-import { mergeConfigs } from '../utils';
+import { mergeConfigs } from './utils';
 
 
 
-export const baseConfig = mergeConfigs(
-    tslint.configs.base,
-    baseRulesConfig,
+export const commonConfig = mergeConfigs(
     {
         languageOptions: {
             globals: {
                 ...globals.es2021,
-                ...globals.node,
-                ...globals.browser,
-                ...globals.serviceworker,
                 ...globals.builtin,
             },
             parserOptions: {
+                ...tslint.configs.base.languageOptions?.parserOptions,
                 projectService: true,
                 tsconfigRootDir: path.resolve(),
                 ecmaVersion: 'latest',
@@ -31,15 +25,6 @@ export const baseConfig = mergeConfigs(
                 },
                 project: 'tsconfig.json',
                 warnOnUnsupportedTypeScriptVersion: false,
-                ecmaFeatures: {
-                    jsx: true,
-                },
-            },
-        },
-
-        settings: {
-            node: {
-                version: '>=21.0.0',
             },
         },
 

@@ -24,6 +24,7 @@ export namespace CONST {
         '**/build/**',
         '**/*.generated.*',
         '**/eslint.config.*',
+        '**/generated/**',
     ];
 
     export const STYLE = {

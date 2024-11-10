@@ -1,10 +1,4 @@
-// @ts-expect-error
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-// @ts-expect-error
-import reactRefreshPlugin from 'eslint-plugin-react-refresh';
 import { fixupPluginRules } from '@eslint/compat';
-// @ts-expect-error
-import controlStatementsPlugin from 'eslint-plugin-jsx-control-statements';
 import { mergeConfigs } from '../utils';
 import { reactRulesConfig } from './rules';
 
@@ -19,6 +13,7 @@ export const reactConfig = mergeConfigs(
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             'react-refresh': reactRefreshPlugin,
             'jsx-control-statements': fixupPluginRules(
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 controlStatementsPlugin,
             ),
         },
@@ -29,6 +24,11 @@ export const reactConfig = mergeConfigs(
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     .environments['jsx-control-statements'].globals
             ),
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
         },
     },
     reactRulesConfig,
