@@ -115,6 +115,8 @@ const unfilteredConfig = mergeConfigs(
                 argsIgnorePattern: '^_',
             }],
             'unicorn/no-null': 'off',
+            'unicorn/explicit-length-check': 'off',
+            'import-x/export': 'off',
         },
     },
 );
