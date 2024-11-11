@@ -2,7 +2,7 @@
 import tslint from 'typescript-eslint';
 import { CONST } from '../constants';
 import { mergeConfigs } from '../utils';
-import { commonConfig } from 'src/commonConfig';
+import { commonConfig } from '../commonConfig';
 import eslint from '@eslint/js';
 // @ts-expect-error
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';

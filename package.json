@@ -1,6 +1,6 @@
 {
     "name": "@lesnoypudge/eslint-config",
-    "version": "6.0.0",
+    "version": "6.0.1",
     "author": "LesnoyPudge",
     "license": "ISC",
     "description": "lesnoypudge's eslint-config",
@@ -10,7 +10,7 @@
     "scripts": {
         "deploy": "git add . && git commit -m 'update' && git push && git status",
         "publish": "npm publish --access public",
-        "build": "builder",
+        "build": "builder --file tsconfig.build.json",
         "lint:check": "eslint .",
         "lint:debug": "eslint . --debug",
         "debug": "node eslint.config.js"
@@ -40,7 +40,7 @@
         "typescript-eslint": "^8.7.0"
     },
     "devDependencies": {
-        "@lesnoypudge/builder": "^1.0.5",
+        "@lesnoypudge/builder": "^2.0.1",
         "@types/confusing-browser-globals": "^1.0.3",
         "@types/eslint__js": "^8.42.3",
         "@types/eslint-plugin-jsx-a11y": "^6.9.0",
