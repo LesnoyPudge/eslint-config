@@ -1,5 +1,5 @@
 import { config } from "./build/index.js";
-
+import fs from "fs";
 
 
 const _config = config.createConfig(
@@ -7,9 +7,10 @@ const _config = config.createConfig(
     config.configs.disableTypeChecked,
 );
 
-// fs.writeFileSync(
-//     'output.json', 
-//     JSON.stringify(_config[0].rules, null, 4)
-// )
+console.log('writing')
+fs.writeFileSync(
+    'output.json', 
+    JSON.stringify({...config.configs.react, plugins: {}}, null, 4)
+)
 
 export default _config;
