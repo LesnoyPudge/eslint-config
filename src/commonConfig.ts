@@ -7,6 +7,7 @@ import { mergeConfigs } from './utils';
 
 
 export const commonConfig = mergeConfigs(
+    tslint.configs.base,
     {
         languageOptions: {
             globals: {
@@ -14,7 +15,6 @@ export const commonConfig = mergeConfigs(
                 ...globals.builtin,
             },
             parserOptions: {
-                ...tslint.configs.base.languageOptions?.parserOptions,
                 projectService: true,
                 tsconfigRootDir: path.resolve(),
                 ecmaVersion: 'latest',
