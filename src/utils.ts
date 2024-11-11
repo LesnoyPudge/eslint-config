@@ -1,5 +1,6 @@
 // eslint-disable-next-line n/no-extraneous-import
 import type { TSESLint } from '@typescript-eslint/utils';
+import tslint from 'typescript-eslint';
 
 
 
@@ -52,6 +53,8 @@ const mergeTwo = <
                     continue;
                 }
 
+                if (key === 'plugins') {}
+
                 loop(result[key], targetValue, sourceValue);
                 continue;
             }
@@ -102,4 +105,32 @@ export const extractRules = (
         accumulator = { ...accumulator, ...current };
         return accumulator;
     }, {});
+};
+
+export const createConfig: typeof tslint.config = (
+    ...configs
+) => {
+    const usedPlugins = new Set<string>();
+    const cleanedConfigs = configs.map((config) => {
+        const plugins = config.plugins ?? {};
+
+        const cleanedPlugins = (
+            Object.keys(plugins)
+                .reduce<typeof plugins>((acc, cur) => {
+                    if (usedPlugins.has(cur)) {
+                        return acc;
+                    }
+
+                    usedPlugins.add(cur);
+                    acc[cur] = plugins[cur]!;
+
+                    return acc;
+                }, {})
+        );
+
+        config.plugins = cleanedPlugins;
+        return config;
+    });
+
+    return tslint.config(...cleanedConfigs);
 };

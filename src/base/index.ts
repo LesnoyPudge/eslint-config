@@ -52,6 +52,7 @@ const configs = mergeConfigs(
 export const baseConfig = mergeConfigs(
     commonConfig,
     {
+        name: 'baseConfig',
         plugins: {
             ...tslint.configs.base.plugins,
             ...configs.plugins,

@@ -1,8 +1,7 @@
 import { baseConfig } from './base';
 import { reactConfig } from './react';
 import { disableTypeCheckedConfig } from './disableTypeChecked';
-import tslint from 'typescript-eslint';
-import { mergeConfigs } from './utils';
+import { createConfig, mergeConfigs } from './utils';
 import { nodeConfig } from './node';
 import { webConfig } from './web';
 import 'eslint-plugin-only-warn';
@@ -11,7 +10,7 @@ import { commonConfig } from './commonConfig';
 
 
 export const config = {
-    createConfig: tslint.config,
+    createConfig,
     mergeConfigs,
     configs: {
         common: commonConfig,
