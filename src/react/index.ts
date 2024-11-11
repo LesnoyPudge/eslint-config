@@ -9,11 +9,13 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import controlStatementsPlugin from 'eslint-plugin-jsx-control-statements';
 // @ts-expect-error
 import reactRefreshPlugin from 'eslint-plugin-react-refresh'
+import { commonConfig } from '../commonConfig';
 
 
 
 // https://github.com/facebook/react/issues/28313
 export const reactConfig = mergeConfigs(
+    commonConfig,
     jsxAllyPlugin.flatConfigs.recommended,
     jsxAllyPlugin.flatConfigs.strict,
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
