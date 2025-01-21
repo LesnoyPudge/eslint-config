@@ -20,6 +20,7 @@ export const nodeConfig = mergeConfigs(
         },
         rules: {
             'n/no-missing-import': 'off',
+            'n/no-unpublished-import': 'off',
         },
     },
 );
