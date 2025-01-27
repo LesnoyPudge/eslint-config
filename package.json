@@ -1,6 +1,6 @@
 {
     "name": "@lesnoypudge/eslint-config",
-    "version": "6.1.0",
+    "version": "7.0.0",
     "author": "LesnoyPudge",
     "license": "ISC",
     "description": "lesnoypudge's eslint-config",
