@@ -112,6 +112,7 @@ export const createConfig: typeof tslint.config = (
 ) => {
     const usedPlugins = new Set<string>();
     const cleanedConfigs = configs.map((config) => {
+        // @ts-expect-error
         const plugins = config.plugins ?? {};
 
         const cleanedPlugins = (
@@ -128,6 +129,7 @@ export const createConfig: typeof tslint.config = (
                 }, {})
         );
 
+        // @ts-expect-error
         config.plugins = cleanedPlugins;
         return config;
     });

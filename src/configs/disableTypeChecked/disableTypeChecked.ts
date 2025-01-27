@@ -1,4 +1,4 @@
-import { CONST } from '../constants';
+import { CONST } from '../../constants';
 import tslint from 'typescript-eslint';
 
 

@@ -1,5 +1,5 @@
-import { commonConfig } from '../commonConfig';
-import { mergeConfigs } from '../utils';
+import { commonConfig } from '../../commonConfig';
+import { mergeConfigs } from '../../utils';
 import globals from 'globals';
 
 

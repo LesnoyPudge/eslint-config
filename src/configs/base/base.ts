@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import tslint from 'typescript-eslint';
-import { CONST } from '../constants';
-import { mergeConfigs } from '../utils';
-import { commonConfig } from '../commonConfig';
+import {
+    CONST,
+} from '../../constants';
+import {
+    mergeConfigs,
+} from '../../utils';
+import {
+    commonConfig,
+} from '../../commonConfig';
 import eslint from '@eslint/js';
 // @ts-expect-error
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
@@ -16,6 +22,10 @@ import avaPlugin from 'eslint-plugin-ava';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 // @ts-expect-error
 import pluginPromise from 'eslint-plugin-promise';
+// @ts-expect-error
+import controlStatementsPlugin from 'eslint-plugin-jsx-control-statements';
+import { fixupPluginRules } from '@eslint/compat';
+import jsxAllyPlugin from 'eslint-plugin-jsx-a11y';
 
 
 
@@ -50,21 +60,40 @@ const configs = mergeConfigs(
 );
 
 export const baseConfig = mergeConfigs(
-    commonConfig,
     {
-        name: 'baseConfig',
         plugins: {
             ...tslint.configs.base.plugins,
             ...configs.plugins,
             'prefer-arrow': preferArrowPlugin,
+            'jsx-control-statements': fixupPluginRules(
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+                controlStatementsPlugin,
+            ),
+            'jsx-a11y': jsxAllyPlugin,
         },
         languageOptions: {
             globals: {
                 ...configs.languageOptions?.globals,
+                ...(
+                    controlStatementsPlugin
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                        .environments['jsx-control-statements']
+                        .globals
+                ),
             },
         },
         rules: {
             ...configs.rules,
+            ...jsxAllyPlugin.flatConfigs.recommended.rules,
+            ...jsxAllyPlugin.flatConfigs.strict.rules,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            ...controlStatementsPlugin.configs.recommended.rules,
+        },
+    },
+    commonConfig,
+    {
+        name: 'baseConfig',
+        rules: {
             'import-x/no-extraneous-dependencies': 'error',
             'prefer-arrow/prefer-arrow-functions': [
                 'warn',
@@ -74,10 +103,6 @@ export const baseConfig = mergeConfigs(
                     classPropertiesAllowed: false,
                 },
             ],
-            '@stylistic/max-len': ['warn', {
-                'code': 80,
-                'ignoreComments': true,
-            }],
             '@stylistic/eol-last': ['warn', 'never'],
             '@stylistic/no-multiple-empty-lines': [
                 'warn',
@@ -91,7 +116,7 @@ export const baseConfig = mergeConfigs(
             'no-restricted-globals': ['warn', ...restrictedGlobals],
             '@stylistic/jsx-tag-spacing': ['warn', {
                 'closingSlash': 'never',
-                'beforeSelfClosing': 'proportional-always',
+                'beforeSelfClosing': 'never',
                 'afterOpening': 'never',
                 'beforeClosing': 'never',
             }],
@@ -123,12 +148,64 @@ export const baseConfig = mergeConfigs(
             '@typescript-eslint/no-unnecessary-type-parameters': 'off',
             '@typescript-eslint/unbound-method': 'off',
             'unicorn/no-array-callback-reference': 'off',
-            '@typescript-eslint/no-unused-vars': ['warn', {
-                argsIgnorePattern: '^_',
-            }],
+            '@typescript-eslint/no-unused-vars': [
+                'warn',
+                {
+                    'args': 'all',
+                    'argsIgnorePattern': '^_',
+                    'caughtErrors': 'all',
+                    'caughtErrorsIgnorePattern': '^_',
+                    'destructuredArrayIgnorePattern': '^_',
+                    'varsIgnorePattern': '^_',
+                    'ignoreRestSiblings': true,
+                },
+            ],
             'unicorn/no-null': 'off',
             'unicorn/explicit-length-check': 'off',
             'import-x/export': 'off',
+            '@stylistic/lines-between-class-members': 'off',
+            '@stylistic/jsx-quotes': ['warn', 'prefer-single'],
+            'unicorn/expiring-todo-comments': 'off',
+            '@typescript-eslint/no-unnecessary-condition': 'off',
+            'unicorn/prefer-array-index-of': 'off',
+            '@typescript-eslint/consistent-indexed-object-style': 'off',
+            'promise/no-callback-in-promise': 'off',
+            '@typescript-eslint/no-unused-expressions': 'off',
+            '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+            'prefer-const': 'off',
+            'unicorn/prefer-top-level-await': 'off',
+            '@stylistic/multiline-ternary': 'off',
+            '@stylistic/jsx-one-expression-per-line': 'off',
+            'unicorn/numeric-separators-style': [
+                'warn',
+                {
+                    'number': {
+                        'minimumDigits': 0,
+                        'groupLength': 3,
+                    },
+                },
+            ],
+            'jsx-control-statements/jsx-for-require-each': 'off',
+            'import-x/no-named-as-default-member': 'off',
+            'jsx-a11y/no-autofocus': 'off',
+            '@typescript-eslint/no-invalid-void-type': 'off',
+            'unicorn/prefer-export-from': 'off',
+            '@stylistic/jsx-closing-bracket-location': 'off',
+            'unicorn/no-nested-ternary': 'off',
+            'unicorn/no-abusive-eslint-disable': 'off',
+            '@stylistic/no-extra-parens': 'off',
+            'unicorn/no-static-only-class': 'off',
+            '@typescript-eslint/no-extraneous-class': 'off',
+            'jsx-control-statements/jsx-use-if-tag': 'off',
+            '@typescript-eslint/no-non-null-assertion': 'off',
+            '@stylistic/max-len': ['warn', {
+                'code': 100,
+                'ignoreStrings': true,
+                'ignoreTemplateLiterals': true,
+                'ignoreRegExpLiterals': true,
+                'ignoreComments': true,
+            }],
+            'jsx-control-statements/jsx-jcs-no-undef': 'off',
         },
     },
 );

@@ -23,7 +23,7 @@ export namespace CONST {
         '**/vendor/**',
         '**/build/**',
         '**/*.generated.*',
-        '**/eslint.config.*',
+        // '**/eslint.config.*',
         '**/generated/**',
     ];
 

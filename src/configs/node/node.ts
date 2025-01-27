@@ -1,7 +1,7 @@
-import { mergeConfigs } from '../utils';
+import { mergeConfigs } from '../../utils';
 import globals from 'globals';
 import nodePlugin from 'eslint-plugin-n';
-import { commonConfig } from '../commonConfig';
+import { commonConfig } from '../../commonConfig';
 
 
 export const nodeConfig = mergeConfigs(

@@ -20,11 +20,11 @@ export const commonConfig = mergeConfigs(
                 ecmaVersion: 'latest',
                 sourceType: 'module',
                 allowAutomaticSingleRunInference: true,
-                cacheLifetime: {
-                    glob: 'Infinity',
-                },
                 project: 'tsconfig.json',
                 warnOnUnsupportedTypeScriptVersion: false,
+                ecmaFeatures: {
+                    jsx: true,
+                },
             },
         },
 

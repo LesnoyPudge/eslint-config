@@ -1,11 +1,13 @@
-import { baseConfig } from './base';
-import { reactConfig } from './react';
-import { disableTypeCheckedConfig } from './disableTypeChecked';
 import { createConfig, mergeConfigs } from './utils';
-import { nodeConfig } from './node';
-import { webConfig } from './web';
 import 'eslint-plugin-only-warn';
 import { commonConfig } from './commonConfig';
+import {
+    baseConfig,
+    disableTypeCheckedConfig,
+    nodeConfig,
+    reactConfig,
+    webConfig,
+} from './configs';
 
 
 
