@@ -5,7 +5,6 @@ import { config } from './build/index.js';
 
 const _config = config.createConfig(
     config.configs.base,
-    config.configs.node,
     config.configs.disableTypeChecked,
 );
 

@@ -13,7 +13,7 @@ import reactCompilerPlugin from 'eslint-plugin-react-compiler';
 export const reactConfig = mergeConfigs(
     commonConfig,
     {
-        ...reactPlugin.configs.flat.recommended,
+        ...reactPlugin.configs.flat['jsx-runtime'],
         settings: { react: { version: 'detect' } },
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
