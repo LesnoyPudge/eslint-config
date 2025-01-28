@@ -17,14 +17,14 @@ export namespace CONST {
     ];
 
     export const IGNORED_PATHS = [
-        '**/node_modules/**',
-        '**/dist/**',
-        '**/coverage/**',
-        '**/vendor/**',
-        '**/build/**',
+        '**/node_modules/',
+        '**/dist/',
+        '**/coverage/',
+        '**/vendor/',
+        '**/build/',
         '**/*.generated.*',
         // '**/eslint.config.*',
-        '**/generated/**',
+        '**/generated/',
     ];
 
     export const STYLE = {
