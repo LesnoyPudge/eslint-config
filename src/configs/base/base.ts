@@ -206,6 +206,7 @@ export const baseConfig = mergeConfigs(
                 'ignoreComments': true,
             }],
             'jsx-control-statements/jsx-jcs-no-undef': 'off',
+            'unicorn/consistent-function-scoping': 'off',
         },
     },
 );
