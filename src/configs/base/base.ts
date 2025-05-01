@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import tslint from 'typescript-eslint';
-import {
-    CONST,
-} from '../../constants';
-import {
-    mergeConfigs,
-} from '../../utils';
-import {
-    commonConfig,
-} from '../../commonConfig';
+import { CONST } from '../../constants';
+import { mergeConfigs } from '../../utils';
+import { commonConfig } from '../../commonConfig';
 import eslint from '@eslint/js';
 // @ts-expect-error
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
@@ -26,6 +20,7 @@ import pluginPromise from 'eslint-plugin-promise';
 import controlStatementsPlugin from 'eslint-plugin-jsx-control-statements';
 import { fixupPluginRules } from '@eslint/compat';
 import jsxAllyPlugin from 'eslint-plugin-jsx-a11y';
+import importExport from '@lesnoypudge/eslint-plugin-import-export';
 
 
 
@@ -34,6 +29,7 @@ const configs = mergeConfigs(
     tslint.configs.eslintRecommended,
     importPlugin.flatConfigs.recommended,
     importPlugin.flatConfigs.typescript,
+    importExport.configs.recommended,
     ...tslint.configs.strictTypeChecked,
     ...tslint.configs.stylisticTypeChecked,
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access

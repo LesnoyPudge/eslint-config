@@ -1,6 +1,6 @@
 {
     "name": "@lesnoypudge/eslint-config",
-    "version": "11.0.2",
+    "version": "12.0.0",
     "author": "LesnoyPudge",
     "license": "ISC",
     "description": "lesnoypudge's eslint-config",
@@ -20,6 +20,7 @@
     "dependencies": {
         "@eslint/compat": "1.2.5",
         "@eslint/js": "8.57.1",
+        "@lesnoypudge/eslint-plugin-import-export": "^1.1.0",
         "@lesnoypudge/formatter-config": "8.0.0",
         "@lesnoypudge/types-global-base": "4.0.0",
         "@lesnoypudge/types-global-node": "1.0.1",
