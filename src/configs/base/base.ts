@@ -21,6 +21,7 @@ import controlStatementsPlugin from 'eslint-plugin-jsx-control-statements';
 import { fixupPluginRules } from '@eslint/compat';
 import jsxAllyPlugin from 'eslint-plugin-jsx-a11y';
 import importExport from '@lesnoypudge/eslint-plugin-import-export';
+import marginTop from '@lesnoypudge/eslint-plugin-margin-top';
 
 
 
@@ -30,6 +31,7 @@ const configs = mergeConfigs(
     importPlugin.flatConfigs.recommended,
     importPlugin.flatConfigs.typescript,
     importExport.configs.recommended,
+    marginTop.configs.recommended,
     ...tslint.configs.strictTypeChecked,
     ...tslint.configs.stylisticTypeChecked,
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
