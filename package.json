@@ -1,6 +1,6 @@
 {
     "name": "@lesnoypudge/eslint-config",
-    "version": "13.0.1",
+    "version": "13.0.2",
     "author": "LesnoyPudge",
     "license": "ISC",
     "description": "lesnoypudge's eslint-config",
@@ -20,8 +20,8 @@
     "dependencies": {
         "@eslint/compat": "1.2.5",
         "@eslint/js": "8.57.1",
-        "@lesnoypudge/eslint-plugin-import-export": "^1.1.3",
-        "@lesnoypudge/eslint-plugin-margin-top": "^1.0.1",
+        "@lesnoypudge/eslint-plugin-import-export": "^1.1.5",
+        "@lesnoypudge/eslint-plugin-margin-top": "^1.0.2",
         "@lesnoypudge/formatter-config": "8.0.0",
         "@lesnoypudge/types-global-base": "4.0.0",
         "@lesnoypudge/types-global-node": "1.0.1",
